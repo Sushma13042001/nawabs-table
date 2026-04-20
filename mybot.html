@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nawab's Table | AI Menu Assistant</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .q-chip {
+      display: inline-block;
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.84rem;
+      color: var(--charcoal);
+      margin: 4px 4px 4px 0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .q-chip:hover { background: rgba(212,136,28,0.12); border-color: var(--saffron); color: var(--brown); }
+    .two-col { display: grid; grid-template-columns: 1fr 1.4fr; gap: 36px; align-items: start; }
+    @media(max-width:800px){ .two-col { grid-template-columns: 1fr; } }
+    .veg-dot   { color: #2E7D32; font-weight: 900; }
+    .nonveg-dot{ color: var(--deep-red); font-weight: 900; }
+    .spice-bar { display: inline-flex; gap: 2px; }
+    .spice-bar span { font-size: 0.7rem; }
+    .embed-zone {
+      background: var(--cream-dk);
+      border: 2px dashed rgba(212,136,28,0.4);
+      border-radius: 10px;
+      padding: 36px 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .embed-zone h3 { font-family:'Cormorant Garamond',serif; font-size:1.5rem; margin-bottom:8px; color:var(--brown); }
+    .embed-zone p  { color:var(--muted); font-size:0.88rem; line-height:1.6; max-width:420px; margin:0 auto 16px; }
+    .code-block {
+      background: var(--charcoal);
+      color: #c9b89a;
+      border-radius: 7px;
+      padding: 14px 18px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      text-align: left;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+    .reflection-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--saffron);
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-top: 40px;
+      box-shadow: var(--shadow);
+    }
+    .reflection-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; margin-bottom:10px; color:var(--brown); }
+    .reflection-card p  { color:var(--muted); font-size:0.92rem; line-height:1.8; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span>
+        <span class="logo-text">🍛 Nawab's Table</span>
+        <span class="logo-sub">Authentic Hyderabadi Cuisine</span>
+      </span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="charts.html">Analytics</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mybot.html" class="active">AI Bot</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / AI Bot</div>
+    <h1>🤖 NawabBot — AI Menu Assistant</h1>
+    <p style="color:#c9b89a;margin-top:6px;font-size:0.9rem;">Powered by Botpress · Trained on our Hyderabadi menu</p>
+  </div>
+
+  <div class="section">
+    <div class="two-col">
+
+      <!-- LEFT: Bot info -->
+      <div>
+        <div class="sec-label">AI Assistant</div>
+        <div class="sec-title">Meet NawabBot</div>
+        <p class="sec-sub">NawabBot is an AI chatbot trained on Nawab's Table complete menu. Ask about any dish — its ingredients, spice level, price, or whether it's vegetarian.</p>
+
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:22px;margin-bottom:20px;box-shadow:var(--shadow);">
+          <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--saffron);font-weight:700;margin-bottom:12px;">Try asking NawabBot:</p>
+          <span class="q-chip">"What biryanis do you have?"</span>
+          <span class="q-chip">"Is Haleem vegetarian?"</span>
+          <span class="q-chip">"Which dish is least spicy?"</span>
+          <span class="q-chip">"How much does Chicken 65 cost?"</span>
+          <span class="q-chip">"Tell me about Mirchi Ka Salan"</span>
+          <span class="q-chip">"What desserts are available?"</span>
+          <span class="q-chip">"Recommend something for vegetarians"</span>
+        </div>
+
+        <!-- Embed Zone -->
+        <div class="embed-zone">
+          <div style="font-size:2.5rem;margin-bottom:10px;">🤖</div>
+          <h3>Botpress Embed Goes Here</h3>
+          <p>After publishing your bot, paste the two embed script tags just before &lt;/body&gt; in this file to activate the live chat widget.</p>
+          <div class="code-block">
+&lt;!-- Step 5: Replace with YOUR Botpress embed --&gt;<br/>
+&lt;script src="https://cdn.botpress.cloud/<br/>
+&nbsp;&nbsp;webchat/v2.2/inject.js"&gt;&lt;/script&gt;<br/>
+&lt;script src="https://files.bpcontent.cloud/<br/>
+&nbsp;&nbsp;YOUR_BOT_ID/webchat.config.js"&gt;&lt;/script&gt;
+          </div>
+          <p style="margin-top:12px;font-size:0.78rem;color:var(--muted);font-style:italic;">
+            Botpress → Publish → Web Chat → Copy embed → Paste above
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Dataset table -->
+      <div>
+        <div class="sec-label">Knowledge Base Dataset</div>
+        <div class="sec-title">Hyderabadi Menu — 10 Dishes</div>
+        <p class="sec-sub">This table was loaded into Botpress and converted into the Knowledge Base that powers NawabBot's answers.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Dish Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Spice</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>D001</td>
+                <td><strong>Chicken Dum Biryani</strong></td>
+                <td><span class="tag tag-biryani">Biryani</span></td>
+                <td class="price-col">₹320</td>
+                <td><span class="spice-bar"><span>🌶️🌶️🌶️</span></span></td>
+                <td><span class="nonveg-dot">●</span> Non-Veg</td>
+              </tr>
+              <tr>
+                <td>D002</td>
+                <td><strong>Mutton Dum Biryani</strong></td>
+                <td><span class="tag tag-biryani">Biryani</span></td>
+                <td class="price-col">₹420</td>
+                <td><span class="spice-bar"><span>🌶️🌶️🌶️</span></span></td>
+                <td><span class="nonveg-dot">●</span> Non-Veg</td>
+              </tr>
+              <tr>
+                <td>D003</td>
+                <td><strong>Vegetable Biryani</strong></td>
+                <td><span class="tag tag-biryani">Biryani</span></td>
+                <td class="price-col">₹220</td>
+                <td><span class="spice-bar"><span>🌶️🌶️</span></span></td>
+                <td><span class="veg-dot">●</span> Veg</td>
+              </tr>
+              <tr>
+                <td>D004</td>
+                <td><strong>Haleem</strong></td>
+                <td><span class="tag tag-curry">Curry</span></td>
+                <td class="price-col">₹280</td>
+                <td><span class="spice-bar"><span>🌶️🌶️</span></span></td>
+                <td><span class="nonveg-dot">●</span> Non-Veg</td>
+              </tr>
+              <tr>
+                <td>D005</td>
+                <td><strong>Mirchi Ka Salan</strong></td>
+                <td><span class="tag tag-curry">Curry</span></td>
+                <td class="price-col">₹180</td>
+                <td><span class="spice-bar"><span>🌶️🌶️🌶️🌶️</span></span></td>
+                <td><span class="veg-dot">●</span> Veg</td>
+              </tr>
+              <tr>
+                <td>D006</td>
+                <td><strong>Seekh Kebab</strong></td>
+                <td><span class="tag tag-kebab">Kebab</span></td>
+                <td class="price-col">₹340</td>
+                <td><span class="spice-bar"><span>🌶️🌶️</span></span></td>
+                <td><span class="nonveg-dot">●</span> Non-Veg</td>
+              </tr>
+              <tr>
+                <td>D007</td>
+                <td><strong>Chicken 65</strong></td>
+                <td><span class="tag tag-starter">Starter</span></td>
+                <td class="price-col">₹260</td>
+                <td><span class="spice-bar"><span>🌶️🌶️🌶️</span></span></td>
+                <td><span class="nonveg-dot">●</span> Non-Veg</td>
+              </tr>
+              <tr>
+                <td>D008</td>
+                <td><strong>Double Ka Meetha</strong></td>
+                <td><span class="tag tag-dessert">Dessert</span></td>
+                <td class="price-col">₹140</td>
+                <td><span class="spice-bar"><span>—</span></span></td>
+                <td><span class="veg-dot">●</span> Veg</td>
+              </tr>
+              <tr>
+                <td>D009</td>
+                <td><strong>Qubani Ka Meetha</strong></td>
+                <td><span class="tag tag-dessert">Dessert</span></td>
+                <td class="price-col">₹130</td>
+                <td><span class="spice-bar"><span>—</span></span></td>
+                <td><span class="veg-dot">●</span> Veg</td>
+              </tr>
+              <tr>
+                <td>D010</td>
+                <td><strong>Irani Chai</strong></td>
+                <td><span class="tag tag-drink">Drink</span></td>
+                <td class="price-col">₹60</td>
+                <td><span class="spice-bar"><span>—</span></span></td>
+                <td><span class="veg-dot">●</span> Veg</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top:10px;font-size:0.78rem;color:var(--muted);">
+          <span class="veg-dot">●</span> Green = Vegetarian &nbsp;&nbsp; <span class="nonveg-dot">●</span> Red = Non-Vegetarian &nbsp;&nbsp; 🌶️ = spice level
+        </p>
+      </div>
+
+    </div>
+
+    <!-- REFLECTION -->
+    <div class="reflection-card">
+      <h3>📝 Team Reflection</h3>
+      <p>
+        NawabBot was built to let customers ask natural questions about Hyderabadi dishes — like "which biryani is best?" or "what's vegetarian?" — without having to scroll through the full menu. We loaded the 10-dish dataset into a Botpress Table, connected it to a Knowledge Base, and wrote Autonomous Node instructions telling the bot: <em>"You are NawabBot, a friendly food assistant for Nawab's Table. Only answer questions about our Hyderabadi menu using the knowledge base."</em> The biggest challenge was keeping the bot on-topic — it kept recommending things outside our dataset until we tightened the instructions. Through this project we learned how structured data, AI language models, and web deployment connect together to create something genuinely useful for real restaurant customers.
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">🍛 Nawab's Table</div>
+    <p>ISM 6225 — Application Development for Analytics &nbsp;|&nbsp; © 2025 Nawab's Table Team</p>
+  </footer>
+
+  <!-- Botpress NawabBot Embed -->
+  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/04/18/19/20260418195252-NP904IL7.js" defer></script>
+
+</body>
+</html>

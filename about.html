@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nawab's Table | About Us</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span>
+        <span class="logo-text">🍛 Nawab's Table</span>
+        <span class="logo-sub">Authentic Hyderabadi Cuisine</span>
+      </span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="charts.html">Analytics</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="mybot.html">AI Bot</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / About Us</div>
+    <h1>Meet the Team</h1>
+    <p style="color:#c9b89a;margin-top:6px;font-size:0.9rem;">ISM 6225 — Application Development for Analytics</p>
+  </div>
+
+  <div class="section">
+
+    <!-- ===== TEAM MEMBERS ===== -->
+    <div class="sec-label">Our Team</div>
+    <div class="sec-title">The People Behind Nawab's Table</div>
+    <p class="sec-sub">Each member contributed to building a full-stack restaurant management prototype.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar" style="background:var(--deep-red);">A</div>
+        <h3>Team Member 1</h3>
+        <div class="role">Project Lead / Backend</div>
+        <p>Designs the database schema, handles API planning, and manages GitHub collaboration.</p>
+        <ul>
+          <li>Logical data model</li>
+          <li>REST API architecture</li>
+          <li>GitHub repo management</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:var(--saffron);">B</div>
+        <h3>Team Member 2</h3>
+        <div class="role">Frontend / UI Design</div>
+        <p>Builds all HTML/CSS pages, responsive layout, and Chart.js analytics dashboard.</p>
+        <ul>
+          <li>Shared stylesheet (style.css)</li>
+          <li>Chart.js visualizations</li>
+          <li>Mobile responsiveness</li>
+        </ul>
+      </div>
+      <div class="team-card">
+        <div class="avatar" style="background:var(--brown);">C</div>
+        <h3>Team Member 3</h3>
+        <div class="role">AI / Data</div>
+        <p>Sets up Botpress chatbot, knowledge base, and the 10-dish dataset powering the AI.</p>
+        <ul>
+          <li>Botpress workflow design</li>
+          <li>Knowledge base setup</li>
+          <li>Menu dataset curation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== LOGICAL DATA MODEL ===== -->
+    <div class="ornament">✦ ✦ ✦</div>
+    <div style="margin-top:30px;">
+      <div class="sec-label">Data Architecture</div>
+      <div class="sec-title">Logical Data Model</div>
+      <p class="sec-sub">
+        The Nawab's Table data model has four entities with two one-to-many (1:N) relationships:
+        one <strong>Customer</strong> can place many <strong>Orders</strong>,
+        and one <strong>Order</strong> can contain many <strong>Order Items</strong>.
+        Each Order Item links to one <strong>Menu Item</strong> (dish).
+        Primary keys are underlined; foreign keys are labelled FK.
+      </p>
+
+      <!-- INLINE SVG DATA MODEL — no external image needed -->
+      <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:30px;box-shadow:var(--shadow);overflow-x:auto;">
+        <svg viewBox="0 0 880 340" xmlns="http://www.w3.org/2000/svg"
+             style="width:100%;min-width:620px;font-family:'Nunito',sans-serif;font-size:12.5px;">
+
+          <!-- ── CUSTOMERS ── -->
+          <rect x="10"  y="20" width="175" height="215" rx="8" fill="#FDF6E3" stroke="#1C1410" stroke-width="1.5"/>
+          <rect x="10"  y="20" width="175" height="38"  rx="8" fill="#1C1410"/>
+          <rect x="10"  y="48" width="175" height="10" fill="#1C1410"/>
+          <text x="97"  y="45" text-anchor="middle" fill="#D4881C" font-weight="800" font-size="13">CUSTOMERS</text>
+          <line x1="10" y1="60" x2="185" y2="60" stroke="#e8d9c0" stroke-width="1"/>
+
+          <text x="24" y="80"  fill="#D4881C" font-weight="700" text-decoration="underline">PK  customer_id</text>
+          <text x="24" y="100" fill="#333">first_name</text>
+          <text x="24" y="118" fill="#333">last_name</text>
+          <text x="24" y="136" fill="#333">email</text>
+          <text x="24" y="154" fill="#333">phone</text>
+          <text x="24" y="172" fill="#333">city</text>
+          <text x="24" y="190" fill="#333">join_date</text>
+          <text x="24" y="210" fill="#8A7560" font-size="10.5">VARCHAR / DATE</text>
+
+          <!-- Relationship label: Customers → Orders -->
+          <line x1="185" y1="120" x2="248" y2="120" stroke="#8A7560" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <polygon points="244,115 255,120 244,125" fill="#8A7560"/>
+          <text x="194" y="113" fill="#4A2C0A" font-size="11" font-weight="700">1</text>
+          <text x="236" y="113" fill="#4A2C0A" font-size="11" font-weight="700">N</text>
+          <text x="208"  y="135" fill="#8A7560" font-size="10" font-style="italic">places</text>
+
+          <!-- ── ORDERS ── -->
+          <rect x="255"  y="20" width="185" height="235" rx="8" fill="#FDF6E3" stroke="#8B1A1A" stroke-width="1.5"/>
+          <rect x="255"  y="20" width="185" height="38"  rx="8" fill="#8B1A1A"/>
+          <rect x="255"  y="48" width="185" height="10" fill="#8B1A1A"/>
+          <text x="347"  y="45" text-anchor="middle" fill="white" font-weight="800" font-size="13">ORDERS</text>
+          <line x1="255" y1="60" x2="440" y2="60" stroke="#e8d9c0" stroke-width="1"/>
+
+          <text x="269" y="80"  fill="#D4881C" font-weight="700" text-decoration="underline">PK  order_id</text>
+          <text x="269" y="100" fill="#8A7560">FK  customer_id</text>
+          <text x="269" y="118" fill="#333">order_date</text>
+          <text x="269" y="136" fill="#333">order_status</text>
+          <text x="269" y="154" fill="#333">total_amount</text>
+          <text x="269" y="172" fill="#333">payment_method</text>
+          <text x="269" y="190" fill="#333">table_number</text>
+          <text x="269" y="208" fill="#333">special_notes</text>
+          <text x="269" y="228" fill="#8A7560" font-size="10.5">INT / VARCHAR / DECIMAL</text>
+
+          <!-- Relationship label: Orders → Order_Items -->
+          <line x1="440" y1="120" x2="503" y2="120" stroke="#8A7560" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <polygon points="499,115 510,120 499,125" fill="#8A7560"/>
+          <text x="449" y="113" fill="#4A2C0A" font-size="11" font-weight="700">1</text>
+          <text x="491" y="113" fill="#4A2C0A" font-size="11" font-weight="700">N</text>
+          <text x="453"  y="135" fill="#8A7560" font-size="10" font-style="italic">contains</text>
+
+          <!-- ── ORDER_ITEMS ── -->
+          <rect x="510"  y="20" width="175" height="185" rx="8" fill="#FDF6E3" stroke="#D4881C" stroke-width="1.5"/>
+          <rect x="510"  y="20" width="175" height="38"  rx="8" fill="#D4881C"/>
+          <rect x="510"  y="48" width="175" height="10" fill="#D4881C"/>
+          <text x="597"  y="45" text-anchor="middle" fill="white" font-weight="800" font-size="13">ORDER_ITEMS</text>
+          <line x1="510" y1="60" x2="685" y2="60" stroke="#e8d9c0" stroke-width="1"/>
+
+          <text x="524" y="80"  fill="#D4881C" font-weight="700" text-decoration="underline">PK  item_id</text>
+          <text x="524" y="100" fill="#8A7560">FK  order_id</text>
+          <text x="524" y="118" fill="#8A7560">FK  dish_id</text>
+          <text x="524" y="136" fill="#333">quantity</text>
+          <text x="524" y="154" fill="#333">unit_price</text>
+          <text x="524" y="172" fill="#333">subtotal</text>
+          <text x="524" y="190" fill="#8A7560" font-size="10.5">INT / DECIMAL</text>
+
+          <!-- Relationship label: Menu_Items → Order_Items (vertical) -->
+          <line x1="760" y1="207" x2="760" y2="260" stroke="#8A7560" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <polygon points="755,205 760,195 765,205" fill="#8A7560"/>
+          <text x="765" y="240" fill="#4A2C0A" font-size="11" font-weight="700">1</text>
+          <text x="765" y="265" fill="#4A2C0A" font-size="11" font-weight="700">N</text>
+          <text x="768" y="255" fill="#8A7560" font-size="10" font-style="italic">ref</text>
+
+          <!-- ── MENU_ITEMS (dishes) ── -->
+          <rect x="690"  y="205" width="180" height="120" rx="8" fill="#FDF6E3" stroke="#2E7D32" stroke-width="1.5"/>
+          <rect x="690"  y="205" width="180" height="36"  rx="8" fill="#2E7D32"/>
+          <rect x="690"  y="231" width="180" height="10" fill="#2E7D32"/>
+          <text x="780"  y="229" text-anchor="middle" fill="white" font-weight="800" font-size="13">MENU_ITEMS</text>
+          <line x1="690" y1="243" x2="870" y2="243" stroke="#e8d9c0" stroke-width="1"/>
+
+          <text x="704" y="261" fill="#D4881C" font-weight="700" text-decoration="underline">PK  dish_id</text>
+          <text x="704" y="278" fill="#333">dish_name, category</text>
+          <text x="704" y="295" fill="#333">price, spice_level</text>
+          <text x="704" y="312" fill="#8A7560" font-size="10.5">VARCHAR / DECIMAL / INT</text>
+
+          <!-- FK arrow from Order_Items to Menu_Items (horizontal) -->
+          <line x1="685" y1="155" x2="750" y2="155" stroke="#8A7560" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <line x1="750" y1="155" x2="750" y2="207" stroke="#8A7560" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+          <!-- ── LEGEND ── -->
+          <rect x="10"  y="255" width="226" height="72" rx="7" fill="#f5ead5" stroke="#e8d9c0"/>
+          <text x="22" y="273" fill="#4A2C0A" font-weight="700" font-size="11">LEGEND</text>
+          <text x="22" y="292" fill="#D4881C" font-size="11">PK = Primary Key (underlined)</text>
+          <text x="22" y="308" fill="#8A7560" font-size="11">FK = Foreign Key (references another table)</text>
+          <text x="22" y="320" fill="#8A7560" font-size="10">--- dashed arrow = 1-to-many relationship</text>
+        </svg>
+      </div>
+
+      <p style="margin-top:14px;font-size:0.84rem;color:var(--muted);line-height:1.7;">
+        <strong>Relationship 1:</strong> CUSTOMERS (1) → ORDERS (N) — one customer can have many orders.<br/>
+        <strong>Relationship 2:</strong> ORDERS (1) → ORDER_ITEMS (N) — one order contains many dish items.<br/>
+        MENU_ITEMS is referenced by ORDER_ITEMS to retrieve dish details like price and name.
+      </p>
+    </div>
+
+    <!-- ===== GITHUB LINK ===== -->
+    <div style="margin-top:50px;">
+      <div class="sec-label">Version Control</div>
+      <div class="sec-title">GitHub Repository</div>
+      <p class="sec-sub">All team commits, branches, and code contributions are tracked here.</p>
+      <a href="https://github.com/your-username/nawabs-table"
+         target="_blank"
+         style="display:inline-flex;align-items:center;gap:12px;
+                background:var(--charcoal);border:1px solid rgba(212,136,28,0.3);
+                border-radius:8px;padding:16px 28px;text-decoration:none;
+                color:var(--cream);font-weight:700;font-size:0.9rem;
+                transition:border-color 0.2s;">
+        🐙 &nbsp; your-username / nawabs-table &nbsp; →
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">🍛 Nawab's Table</div>
+    <p>ISM 6225 — Application Development for Analytics &nbsp;|&nbsp; © 2025 Nawab's Table Team</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nawab's Table | Edit Dish</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span>
+        <span class="logo-text">🍛 Nawab's Table</span>
+        <span class="logo-sub">Authentic Hyderabadi Cuisine</span>
+      </span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="charts.html">Analytics</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mybot.html">AI Bot</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="read.html">Menu</a> / Edit Dish</div>
+    <span class="badge badge-update">UPDATE</span>
+    <h1>✏️ Edit Dish Details</h1>
+    <p style="color:#c9b89a;margin-top:6px;font-size:0.9rem;">Modify pricing, description, or category — changes reflect immediately on the menu.</p>
+  </div>
+
+  <div class="section" style="max-width:700px;">
+
+    <div class="info-box">
+      ℹ️ In the final dynamic version, this form will pre-load data from the database using a GET request by dish ID, and save changes via a PUT/PATCH API call. Below shows a pre-filled example for <strong>Chicken Dum Biryani (D001)</strong>.
+    </div>
+
+    <div class="form-card">
+      <p style="font-size:0.8rem;color:var(--saffron);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;">
+        Currently Editing: Chicken Dum Biryani &nbsp;·&nbsp; D001
+      </p>
+
+      <div class="form-grid-2">
+
+        <div class="form-group">
+          <label>Dish ID (read-only)</label>
+          <input type="text" value="D001" readonly
+            style="opacity:0.5; cursor:not-allowed; background:#f0e8d8;"/>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select>
+            <option selected>Biryani</option>
+            <option>Curry</option>
+            <option>Kebab</option>
+            <option>Starter</option>
+            <option>Dessert</option>
+            <option>Drink</option>
+          </select>
+        </div>
+
+        <div class="form-group span2">
+          <label>Dish Name</label>
+          <input type="text" value="Chicken Dum Biryani"/>
+        </div>
+
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input type="number" value="320"/>
+        </div>
+
+        <div class="form-group">
+          <label>Spice Level (1–5)</label>
+          <select>
+            <option value="1">1 — Very Mild</option>
+            <option value="2">2 — Mild</option>
+            <option value="3" selected>3 — Medium</option>
+            <option value="4">4 — Hot</option>
+            <option value="5">5 — Extra Hot</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Vegetarian?</label>
+          <select>
+            <option value="no" selected>No — Non-Vegetarian</option>
+            <option value="yes">Yes — Vegetarian</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Preparation Time (mins)</label>
+          <input type="number" value="45"/>
+        </div>
+
+        <div class="form-group span2">
+          <label>Description / Key Ingredients</label>
+          <textarea>Aromatic basmati rice layered with tender marinated chicken, saffron strands, crispy fried onions, fresh mint, and slow-cooked using the traditional dum method over a sealed pot.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Available on Menu?</label>
+          <select>
+            <option value="yes" selected>Yes — Available</option>
+            <option value="no">No — Temporarily Unavailable</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Last Updated By</label>
+          <input type="text" placeholder="Your name" value="Admin"/>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-update" onclick="handleSave()">💾 Save Changes</button>
+        <a href="read.html" class="btn btn-outline-gold" style="color:var(--brown);border-color:var(--border);">Cancel</a>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        ✅ Dish D001 updated successfully!
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">🍛 Nawab's Table</div>
+    <p>ISM 6225 — Application Development for Analytics &nbsp;|&nbsp; © 2025 Nawab's Table Team</p>
+  </footer>
+
+  <script>
+    function handleSave() {
+      document.getElementById('successMsg').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

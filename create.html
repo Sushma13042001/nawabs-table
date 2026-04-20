@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nawab's Table | Add New Dish</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span>
+        <span class="logo-text">🍛 Nawab's Table</span>
+        <span class="logo-sub">Authentic Hyderabadi Cuisine</span>
+      </span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="charts.html">Analytics</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mybot.html">AI Bot</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="read.html">Menu</a> / Add Dish</div>
+    <span class="badge badge-create">CREATE</span>
+    <h1>➕ Add New Dish</h1>
+    <p style="color:#c9b89a;margin-top:6px;font-size:0.9rem;">Register a new Hyderabadi dish to the menu database.</p>
+  </div>
+
+  <div class="section" style="max-width:700px;">
+
+    <div class="info-box">
+      ℹ️ In the final dynamic version, this form will send data to the backend database via a POST API call. For now, clicking <strong>Add Dish</strong> shows a success message — simulating the Create operation.
+    </div>
+
+    <div class="form-card">
+      <div class="form-grid-2">
+
+        <div class="form-group">
+          <label>Dish ID</label>
+          <input type="text" placeholder="e.g. D011" />
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select>
+            <option value="">Select category</option>
+            <option>Biryani</option>
+            <option>Curry</option>
+            <option>Kebab</option>
+            <option>Starter</option>
+            <option>Dessert</option>
+            <option>Drink</option>
+          </select>
+        </div>
+
+        <div class="form-group span2">
+          <label>Dish Name</label>
+          <input type="text" placeholder="e.g. Chicken Dum Biryani" />
+        </div>
+
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input type="number" placeholder="0" min="0" />
+        </div>
+
+        <div class="form-group">
+          <label>Spice Level (1–5)</label>
+          <select>
+            <option value="1">1 — Very Mild</option>
+            <option value="2">2 — Mild</option>
+            <option value="3" selected>3 — Medium</option>
+            <option value="4">4 — Hot</option>
+            <option value="5">5 — Extra Hot</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Vegetarian?</label>
+          <select>
+            <option value="no">No — Non-Vegetarian</option>
+            <option value="yes">Yes — Vegetarian</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Preparation Time (mins)</label>
+          <input type="number" placeholder="e.g. 30" min="1" />
+        </div>
+
+        <div class="form-group span2">
+          <label>Description / Key Ingredients</label>
+          <textarea placeholder="Describe the dish — key spices, cooking method, unique features..."></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-create" onclick="handleAdd()">➕ Add Dish to Menu</button>
+        <a href="read.html" class="btn btn-outline-gold" style="color:var(--brown);border-color:var(--border);">Cancel</a>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        ✅ Dish added successfully! Redirecting to menu...
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">🍛 Nawab's Table</div>
+    <p>ISM 6225 — Application Development for Analytics &nbsp;|&nbsp; © 2025 Nawab's Table Team</p>
+  </footer>
+
+  <script>
+    function handleAdd() {
+      document.getElementById('successMsg').style.display = 'block';
+      setTimeout(() => { window.location.href = 'read.html'; }, 2000);
+    }
+  </script>
+
+</body>
+</html>

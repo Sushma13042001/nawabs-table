@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nawab's Table | Remove Dish</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .dish-preview {
+      background: var(--cream-dk);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+    }
+    .dish-preview .dish-icon { font-size: 2.8rem; }
+    .dish-preview .dish-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .dish-preview .dish-info p  { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+    .confirm-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+      padding: 14px; background: var(--cream-dk); border-radius: 7px;
+    }
+    .confirm-row input[type="checkbox"] {
+      width: 18px; height: 18px; cursor: pointer;
+      accent-color: var(--deep-red);
+    }
+    .confirm-row label { font-size: 0.9rem; color: var(--charcoal); cursor: pointer; }
+    .btn-delete-real {
+      background: var(--deep-red);
+      color: white;
+      opacity: 0.4;
+      pointer-events: none;
+      transition: all 0.2s;
+    }
+    .btn-delete-real.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .btn-delete-real.active:hover { background: #A52020; transform: translateY(-2px); }
+    .deleted-msg {
+      display: none;
+      background: rgba(139,26,26,0.08);
+      border: 1px solid rgba(139,26,26,0.25);
+      border-radius: 7px;
+      padding: 13px 18px;
+      color: var(--deep-red);
+      margin-top: 14px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span>
+        <span class="logo-text">🍛 Nawab's Table</span>
+        <span class="logo-sub">Authentic Hyderabadi Cuisine</span>
+      </span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="charts.html">Analytics</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mybot.html">AI Bot</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="read.html">Menu</a> / Remove Dish</div>
+    <span class="badge badge-delete">DELETE</span>
+    <h1>🗑️ Remove Dish from Menu</h1>
+    <p style="color:#c9b89a;margin-top:6px;font-size:0.9rem;">This action permanently removes the dish from the database.</p>
+  </div>
+
+  <div class="section" style="max-width:640px;">
+
+    <!-- Dish being deleted -->
+    <div class="dish-preview">
+      <div class="dish-icon">🍛</div>
+      <div class="dish-info">
+        <h3>Chicken Dum Biryani &nbsp;<span style="font-size:0.75rem;color:var(--muted);font-weight:400;">(D001)</span></h3>
+        <p>
+          Category: Biryani &nbsp;·&nbsp;
+          Price: <strong style="color:var(--saffron)">₹320</strong> &nbsp;·&nbsp;
+          Spice: 🌶️🌶️🌶️ &nbsp;·&nbsp;
+          <span style="color:var(--deep-red);font-weight:700;">Non-Veg</span>
+        </p>
+        <p style="margin-top:4px;">Aromatic basmati rice layered with marinated chicken, saffron, and fried onions.</p>
+      </div>
+    </div>
+
+    <!-- Warning Box -->
+    <div class="danger-box">
+      <h4>⚠️ Warning — this cannot be undone</h4>
+      <ul>
+        <li>Dish D001 will be permanently removed from the menu database</li>
+        <li>All Order Items that referenced this dish will retain a null FK</li>
+        <li>NawabBot's Knowledge Base will no longer answer questions about this dish</li>
+        <li>Consider marking the dish as <em>"Temporarily Unavailable"</em> in Edit instead</li>
+      </ul>
+    </div>
+
+    <!-- Confirmation checkbox -->
+    <div class="confirm-row">
+      <input type="checkbox" id="confirmCheck" onchange="toggleDelete(this)"/>
+      <label for="confirmCheck">
+        I understand this action is <strong>permanent</strong> and cannot be undone
+      </label>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="form-actions">
+      <button class="btn btn-delete-real" id="deleteBtn" onclick="handleDelete()">
+        🗑️ Yes, Remove This Dish
+      </button>
+      <a href="read.html" class="btn btn-gold">← Back to Menu</a>
+    </div>
+
+    <div class="deleted-msg" id="deletedMsg">
+      ✕ Dish D001 (Chicken Dum Biryani) has been removed. Redirecting to menu...
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">🍛 Nawab's Table</div>
+    <p>ISM 6225 — Application Development for Analytics &nbsp;|&nbsp; © 2025 Nawab's Table Team</p>
+  </footer>
+
+  <script>
+    function toggleDelete(cb) {
+      document.getElementById('deleteBtn').classList.toggle('active', cb.checked);
+    }
+    function handleDelete() {
+      document.getElementById('deletedMsg').style.display = 'block';
+      document.getElementById('deleteBtn').disabled = true;
+      setTimeout(() => { window.location.href = 'read.html'; }, 2500);
+    }
+  </script>
+
+</body>
+</html>

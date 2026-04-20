@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nawab's Table | Full Menu</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .search-box {
+      padding: 10px 16px;
+      border: 1.5px solid #e8d9c0;
+      border-radius: 6px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      background: var(--white);
+      outline: none;
+      width: 240px;
+    }
+    .search-box:focus { border-color: var(--saffron); }
+
+    .filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .f-btn {
+      background: var(--white);
+      border: 1.5px solid #e8d9c0;
+      border-radius: 5px;
+      padding: 6px 14px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .f-btn:hover, .f-btn.active {
+      border-color: var(--saffron);
+      color: var(--brown);
+      background: rgba(212,136,28,0.08);
+    }
+    .add-btn-row { margin-bottom: 20px; }
+    .action-btns a {
+      font-size: 0.8rem;
+      padding: 6px 14px;
+    }
+    .veg-dot { color: #2E7D32; font-weight: 900; }
+    .nonveg-dot { color: var(--deep-red); font-weight: 900; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <span>
+        <span class="logo-text">🍛 Nawab's Table</span>
+        <span class="logo-sub">Authentic Hyderabadi Cuisine</span>
+      </span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="charts.html">Analytics</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="mybot.html">AI Bot</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Menu</div>
+    <span class="badge badge-read">READ</span>
+    <h1>🍽️ Full Hyderabadi Menu</h1>
+    <p style="color:#c9b89a;margin-top:6px;font-size:0.9rem;">Browse all dishes — filter by category or search by name.</p>
+  </div>
+
+  <div class="section">
+
+    <div class="add-btn-row">
+      <a href="create.html" class="btn btn-create">+ Add New Dish</a>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <input class="search-box" type="text" placeholder="🔍  Search dishes..." oninput="filterDishes(this.value)"/>
+      <div class="filter-row">
+        <button class="f-btn active" onclick="setFilter('All', this)">All</button>
+        <button class="f-btn" onclick="setFilter('Biryani', this)">Biryani</button>
+        <button class="f-btn" onclick="setFilter('Curry', this)">Curry</button>
+        <button class="f-btn" onclick="setFilter('Kebab', this)">Kebab</button>
+        <button class="f-btn" onclick="setFilter('Starter', this)">Starter</button>
+        <button class="f-btn" onclick="setFilter('Dessert', this)">Dessert</button>
+        <button class="f-btn" onclick="setFilter('Drink', this)">Drink</button>
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrap" id="menuTableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Dish ID</th>
+            <th>Dish Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Spice</th>
+            <th>Type</th>
+            <th>Prep Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="menuBody"></tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:12px;font-size:0.8rem;color:var(--muted);">
+      <span class="veg-dot">●</span> Vegetarian &nbsp;&nbsp;
+      <span class="nonveg-dot">●</span> Non-Vegetarian &nbsp;&nbsp;
+      🌶️ = each chilli = 1 spice level
+    </p>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">🍛 Nawab's Table</div>
+    <p>ISM 6225 — Application Development for Analytics &nbsp;|&nbsp; © 2025 Nawab's Table Team</p>
+  </footer>
+
+  <script>
+    const dishes = [
+      { id:'D001', name:'Chicken Dum Biryani',  cat:'Biryani', price:320, spice:3, veg:false, prep:45,  desc:'Aromatic basmati rice layered with marinated chicken, saffron, and caramelised onions.' },
+      { id:'D002', name:'Mutton Dum Biryani',    cat:'Biryani', price:420, spice:3, veg:false, prep:60,  desc:'Slow-cooked mutton with whole spices, kewra water, and fried onion garnish.' },
+      { id:'D003', name:'Vegetable Biryani',     cat:'Biryani', price:220, spice:2, veg:true,  prep:35,  desc:'Seasonal vegetables with basmati rice, mint, and whole spices. A vegetarian classic.' },
+      { id:'D004', name:'Haleem',                cat:'Curry',   price:280, spice:2, veg:false, prep:240, desc:'Slow-cooked wheat, lentils, and mutton blended to a hearty thick stew.' },
+      { id:'D005', name:'Mirchi Ka Salan',       cat:'Curry',   price:180, spice:4, veg:true,  prep:30,  desc:'Green chillies in a tangy peanut-sesame gravy. The classic biryani companion.' },
+      { id:'D006', name:'Seekh Kebab',           cat:'Kebab',   price:340, spice:2, veg:false, prep:25,  desc:'Minced mutton blended with herbs, shaped on skewers, and grilled over charcoal.' },
+      { id:'D007', name:'Chicken 65',            cat:'Starter', price:260, spice:3, veg:false, prep:20,  desc:'Crispy deep-fried chicken in a fiery red masala with curry leaves and green chillies.' },
+      { id:'D008', name:'Double Ka Meetha',      cat:'Dessert', price:140, spice:0, veg:true,  prep:20,  desc:'Fried bread soaked in sugar syrup, layered with rabri and garnished with dry fruits.' },
+      { id:'D009', name:'Qubani Ka Meetha',      cat:'Dessert', price:130, spice:0, veg:true,  prep:15,  desc:'Stewed Hyderabadi apricots served warm with fresh cream or vanilla ice cream.' },
+      { id:'D010', name:'Irani Chai',            cat:'Drink',   price:60,  spice:0, veg:true,  prep:5,   desc:'Strong creamy tea brewed the old city way — thick milk, mawa, and cardamom.' },
+    ];
+
+    const catColors = {
+      Biryani:'tag-biryani', Curry:'tag-curry', Kebab:'tag-kebab',
+      Starter:'tag-starter', Dessert:'tag-dessert', Drink:'tag-drink'
+    };
+
+    let activeFilter = 'All';
+    let searchTerm   = '';
+
+    function spiceChillis(n) {
+      if (n === 0) return '<span style="color:#aaa;font-size:0.8rem;">—</span>';
+      return '🌶️'.repeat(n);
+    }
+
+    function render() {
+      const filtered = dishes.filter(d => {
+        const matchCat    = activeFilter === 'All' || d.cat === activeFilter;
+        const matchSearch = d.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchCat && matchSearch;
+      });
+
+      const tbody = document.getElementById('menuBody');
+      tbody.innerHTML = filtered.map(d => `
+        <tr>
+          <td style="color:var(--muted);font-weight:700;font-size:0.82rem;">${d.id}</td>
+          <td>
+            <strong>${d.name}</strong><br/>
+            <span style="color:var(--muted);font-size:0.78rem;">${d.desc.substring(0,60)}…</span>
+          </td>
+          <td><span class="tag ${catColors[d.cat]}">${d.cat}</span></td>
+          <td class="price-col">₹${d.price}</td>
+          <td style="font-size:0.9rem;">${spiceChillis(d.spice)}</td>
+          <td>
+            ${d.veg
+              ? '<span class="veg-dot">●</span> Veg'
+              : '<span class="nonveg-dot">●</span> Non-Veg'}
+          </td>
+          <td style="color:var(--muted);font-size:0.85rem;">${d.prep} min</td>
+          <td class="action-btns" style="display:flex;gap:6px;">
+            <a href="update.html" class="btn btn-update" style="font-size:0.76rem;padding:5px 12px;">✏ Edit</a>
+            <a href="delete.html" class="btn btn-delete" style="font-size:0.76rem;padding:5px 12px;">✕</a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function setFilter(f, btn) {
+      activeFilter = f;
+      document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    }
+
+    function filterDishes(val) {
+      searchTerm = val;
+      render();
+    }
+
+    render();
+  </script>
+
+</body>
+</html>
